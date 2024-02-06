@@ -27,7 +27,6 @@ const addRole = () => {
     db.query(`SELECT name FROM department`)
         .then(([rows, fields]) => {
             departments = rows.map(department => department.name)
-            console.log(departments);
             return inquirer
                 .prompt([
                     {
