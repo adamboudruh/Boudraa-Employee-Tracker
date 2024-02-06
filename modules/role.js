@@ -5,7 +5,7 @@ const roleSetDB = (database) => {
     db = database;
 }
 
-const viewRole = () => {
+const viewRole = () => { //TABLE: title, id, dep
     return new Promise((resolve, reject) => {
         db.query(`
     SELECT title, role.id, department.name AS department FROM role
@@ -21,12 +21,12 @@ const viewRole = () => {
     })
 }
 
-const addRole = () => {
+const addRole = () => { //PROMPTS: title, salary, dep
     return new Promise((resolve, reject) => {
         let departments;
     db.query(`SELECT name FROM department`)
         .then(([rows, fields]) => {
-            departments = rows.map(department => department.name)
+            departments = rows.map(department => department.name) //Turns the rows of departments into a usable array
             return inquirer
                 .prompt([
                     {
@@ -47,7 +47,7 @@ const addRole = () => {
                     }
                 ])
         }).then( (data) => {
-            const { title, salary, dep } = data;
+            const { title, salary, dep } = data; //deconstructs the data object for easier use
             return db.query(`SELECT id FROM department WHERE name = ?`, dep)
             .then( (depRow) => {
                 depID = depRow[0][0].id;

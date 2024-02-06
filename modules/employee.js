@@ -6,7 +6,7 @@ const empSetDB = (database) => {
 }
 
 
-const viewEmp = () => { //DISPLAYS: employee id, fname, lname, title, dpmt, salary
+const viewEmp = () => { //TABLE: employee id, fname, lname, title, dpmt, salary
     return new Promise((resolve, reject) => { //Each of these functions in the modules return a promise so we can use .then() back in index.js. This ensures that the function is done displaying before we go back to the main menu, in case something is overwritten.
         db.query(`
             SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary FROM employee
@@ -24,7 +24,7 @@ const viewEmp = () => { //DISPLAYS: employee id, fname, lname, title, dpmt, sala
     })
 }
 
-const viewEmpbyManager = () => {
+const viewEmpbyManager = () => { //TABLE: id, fname, lname, title, dep, salary (grouped by manager)
     return new Promise((resolve, reject) => {
         let managers;
         db.query(`SELECT first_name, last_name FROM employee WHERE manager_id IS NULL`)

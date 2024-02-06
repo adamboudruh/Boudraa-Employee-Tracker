@@ -17,7 +17,7 @@ const viewDpmt = () => { //TABLE: dpt names and id
     })
 }
 
-const viewDpmtBdgt = () => {
+const viewDpmtBdgt = () => { //TABLE: dpt name and budget
     return new Promise((resolve, reject) => {
         let departments;
         db.query(`SELECT name FROM department`)
@@ -54,7 +54,7 @@ const viewDpmtBdgt = () => {
     })
 }
 
-const viewDpmtEmps = () => {
+const viewDpmtEmps = () => { //TABLE: fname, lname, title, salary (grouped by department)
     return new Promise((resolve, reject) => {
         let departments;
         db.query(`SELECT name FROM department`)
