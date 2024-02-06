@@ -28,10 +28,10 @@ const addDpmt = () => { //PROMPTS: name of dpt
                 }
             ]).then( (data) => {
                 db.query(`
-                INSERT INTO department (name) 
-                VALUES (?)
+                    INSERT INTO department (name) 
+                    VALUES (?)
                 `, data.depName)
-            }).then( () => resolve())
+            }).then( () => {console.log('Success! Department added'); resolve();})
               .catch( (err) => {
                 console.log(`Error in adding department: ${err}`); 
                 reject(err);})

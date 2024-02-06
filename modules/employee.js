@@ -6,7 +6,7 @@ const empSetDB = (database) => {
 }
 
 
-const viewEmp = () => { //TABLE: employee id, fname, lname, title, dpmt, salary
+const viewEmp = () => { //DISPLAYS: employee id, fname, lname, title, dpmt, salary
     return new Promise((resolve, reject) => {
         db.query(`
             SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary FROM employee
@@ -119,14 +119,22 @@ const upEmp = () => { //PROMPT: select employee to update, new role
                     const { employeeName, newRole } = data;
                     return db.query(`SELECT id FROM role WHERE title = ?`, newRole)
                     .then((newRoleRow) => {
-                        console.log(`\n${employeeName}\n${newRole}`);
                         const roleID = newRoleRow[0][0].id;
-                        console.log(roleID);
-                        return db.query(`
-                            UPDATE employee
-                            SET role_id = ?
-                            WHERE first_name = ?
-                        `, [roleID, employeeName.split(" ")[0]])
+                        if (newRole.toLowerCase().includes("lead") || newRole.toLowerCase().includes("manager")){
+                            console.log("Congrats on the promotion!");
+                            return db.query(`
+                                UPDATE employee
+                                SET role_id = ?, manager_id = NULL
+                                WHERE first_name = ?
+                            `, [roleID, employeeName.split(" ")[0]])
+                        } else {
+                            return db.query(`
+                                UPDATE employee
+                                SET role_id = ?
+                                WHERE first_name = ?
+                            `, [roleID, employeeName.split(" ")[0]])
+                        }
+                        
                     })
                 }).then(() => console.log(`Success!`))
                       .catch((err) => console.log(`Error in updating employee role: ${err}`))
