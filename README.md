@@ -8,6 +8,7 @@
 This application is a rudimentary content management system for an employee database. The schema it is built around contains a department, role, and employee table. Included is also a seed file to populate these tables. Using inquirer for user input handling, this app allows one to view the contents of each table, add to any table, and update the manager of an employee.
 
 ### Walkthrough Link
+
 https://app.screencastify.com/v3/watch/flvHutGFuIJSVSDRWAJ6 
 
 
