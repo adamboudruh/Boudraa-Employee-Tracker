@@ -9,7 +9,7 @@ This application is a rudimentary content management system for an employee data
 
 ### Walkthrough Link
 
-https://app.screencastify.com/v3/watch/flvHutGFuIJSVSDRWAJ6 
+https://drive.google.com/file/d/1eMKL5rfYqtmdO-pxN391IOAq32HLTngB/view?usp=drive_link 
 
 
 ## Table of Contents
